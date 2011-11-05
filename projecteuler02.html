@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 6 November 2007), see www.w3.org">
+<script type="text/javascript">
+function calculate(){
+	var num = 4000000;
+	//num = recurse(num);
+	num = sumEvens(num);
+	document.getElementById("board").innerHTML = num;
+}
+
+function sumEvens(value){
+	var curr = 0;
+	var n1 = 0;
+	var n2 = 1;
+	var result = 0;
+	for(var i=2; curr<value; i++){
+		curr = (n1 + n2);
+		n1 = n2;
+		n2 = curr;
+		if(curr%2==0)
+			result += curr;
+	}
+	
+	return result
+}
+/*
+function recurse(value){
+	var result = new Array();
+	
+	for(var i=0; i<value+1; i++){
+		if(i==0)
+			result[i] = 0;
+		else if(i==1 || i==2)
+			result[i] = 1;
+		else
+			result[i] = (result[(i-1)] + result[(i-2)]);
+	}
+	
+	return sum(result);
+}
+
+function sum(fibs){
+	var fibsSum = 0;
+	for(num in fibs){
+		if(fibs[num]%2==0)
+			fibsSum += fibs[num];
+	}
+	
+	return fibsSum;
+}
+
+/*
+function recurse(value){  
+	if(value <= 10){
+		if(value == 0)
+			return 0;
+		
+		if(value == 1 || value == 2){
+			return 1;
+		}else{
+			return (recurse(value-1) + recurse(value-2));
+		}
+	}
+}
+*/
+</script>
+<title></title>
+</head>
+<body>
+<p>Finds the sum of the even-valued terms in the Fibonacci sequence whose values do not exceed four million (4,000,000).</p>
+<br>
+<form><input type="button" id="button" value="Calculate" onclick="calculate();"></form>
+Result:
+<br>
+<div id="board" style="background-color: #FF6;height: 20px;width: 500px;"></div>
+</body>
+</html>
