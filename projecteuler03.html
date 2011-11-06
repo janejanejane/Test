@@ -7,19 +7,19 @@ function calculate(){
 	var num = document.getElementById("text").value;
 	if(!isNaN(num)){
 		num = parseInt(num);
-		num = largestPrime(num);
+		num = largestPrime(num, num - 1);
 		console.log(num);
 		document.getElementById("board").innerHTML = num;
 	}
 }
 
-function largestPrime(value){
-	var curr = value - 1;
-	if(curr > 0){
-		if(testPrime(curr) != "prime")
-			return largestPrime(curr - 1);
+function largestPrime(value, decrement){
+	//var curr = value - 1;
+	if(decrement){
+		if(testPrime(decrement) != "prime")
+			return largestPrime(value, decrement - 1);
 		else
-			return isFactor(value, curr) == "yes" ? curr : largestPrime(curr - 1);
+			return isFactor(value, decrement) == "yes" ? decrement : largestPrime(value, decrement - 1);
 	}
 	return null;
 }
