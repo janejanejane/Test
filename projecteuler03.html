@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 6 November 2007), see www.w3.org">
+<script type="text/javascript">
+function calculate(){
+	var num = document.getElementById("text").value;
+	if(!isNaN(num)){
+		num = parseInt(num);
+		num = largestPrime(num);
+		console.log(num);
+		document.getElementById("board").innerHTML = num;
+	}
+}
+
+function largestPrime(value){
+	var curr = value - 1;
+	if(curr > 0){
+		if(testPrime(curr) != "prime")
+			return largestPrime(curr - 1);
+		else
+			return isFactor(value, curr) == "yes" ? curr : largestPrime(curr - 1);
+	}
+	return null;
+}
+
+function isFactor(base, possibleFactor){
+	if(base%possibleFactor == 0)
+		return "yes";
+	else
+		return "no";
+}
+
+function testPrime(number){
+	return isPrime(number, number - 1);
+}
+
+function isPrime(number, factor){
+	if(number == 0 || number == 1 || number == 2)
+		return "prime/composite"
+	if(factor == 1)
+		return "prime";
+	else if(number%factor == 0)
+		return "composite";
+	else
+		return isPrime(number, factor - 1);
+}
+
+</script>
+<title></title>
+</head>
+<body>
+<p>Finds the largest prime factor of an input <b>number.</b></p>
+<br>
+Number:
+<form><input type="text" id="text"> <input type="button" id="button" value="Calculate" onclick="calculate();"></form>
+Result:
+<br>
+<div id="board" style="background-color: #FF6;height: 20px;width: 100px;"></div>
+</body>
+</html>
