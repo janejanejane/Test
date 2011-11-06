@@ -14,19 +14,17 @@ function calculate(){
 }
 
 function largestPrime(value){
-	var curr = value - 1;
+	var max = 0;
 	for(var i=0; i < value; i++){
-		if(testPrime(curr) != "prime"){
-			curr--;
-		}else{
-			if(isFactor(value, curr) == "yes")
-				break;
-			else
-				curr--;
+		if(testPrime(i) == "prime"){
+			if(isFactor(value, i) == "yes"){
+				if(i > max)
+					max = i;
+			}
 		}
 	}
 	
-	return curr;
+	return max;
 	
 	/*if(decrement){
 		if(testPrime(decrement) != "prime")
@@ -46,10 +44,25 @@ function isFactor(base, possibleFactor){
 }
 
 function testPrime(number){
-	return isPrime(number, number - 1);
+	return isPrime(number);
 }
 
-function isPrime(number, factor){
+function isPrime(number){
+	var result = "";
+	for(var i=2; i < Math.sqrt(number); i++){
+		if(number == 0 || number == 1 || number == 2){
+			result = "prime/composite";
+		}else if(number%i == 0){
+			result = "composite";
+			break;
+		}else{
+			result = "prime";
+		}
+	}
+	
+	return result;
+	
+	/*
 	if(number == 0 || number == 1 || number == 2)
 		return "prime/composite"
 	if(factor == 1)
@@ -58,6 +71,7 @@ function isPrime(number, factor){
 		return "composite";
 	else
 		return isPrime(number, factor - 1);
+	*/
 }
 
 </script>
