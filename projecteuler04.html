@@ -22,12 +22,13 @@ function multiply(start, end){
 	var result = 0;
 	var max = 0;
 	for(var i = end; i >= start; i--){
-		for(var j = start; j <= end; j++){
+		for(var j = end; j >= start; j--){
 			result = i * j;
 			
 			if(isPalindrome(result.toString())){
 				if(result > max){
-					max = result;	
+					max = result;
+					//return max;
 				}
 			}
 		}
