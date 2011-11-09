@@ -22,15 +22,18 @@ function multiply(start, end){
 	var result = 0;
 	var max = 0;
 	for(var i = end; i >= start; i--){
-		result = i * start;
-		if(result > max){
-			max = result;	
+		for(var j = start; j <= end; j++){
+			result = i * j;
+			
+			if(isPalindrome(result.toString())){
+				if(result > max){
+					max = result;	
+				}
+			}
 		}
-		if(isPalindrome(max.toString()))
-			return max;
 	}
 	
-	return null;
+	return max;
 }
 
 function isPalindrome(number){
